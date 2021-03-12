@@ -61,12 +61,13 @@
 # thought process:
 
 class AbstractMelonOrder:
-#    def __init__(self, species, qty, shipped, order_type):
+    def __init__(self, species, qty, tax, order_type):
         self.species = species
         self.qty = qty
         self.shipped = False
         self.order_type = None
-        self.tax = None
+        self.tax = tax
+
 
     def get_total(self):
         """Calculate price, including tax."""
@@ -83,28 +84,32 @@ class AbstractMelonOrder:
 
 class DomesticMelonOrder(AbstractMelonOrder):
     """A melon order within the USA."""
+#    def __init__(self, species, qty):
+ #       self.order_type = "domestic"
+  #      self.species = species
+   #     self.qty = qty
+    #    self.tax = 0.08
+     #   self.shipped = False 
     def __init__(self, species, qty):
-        self.order_type = "domestic"
-        self.tax = 0.08
-        #self.species = species
-        self.qty = qty
-        #self.shipped = False
+        super(). __init__(species, qty, "domestic", 0.08)
 
 class InternationalMelonOrder(AbstractMelonOrder):
     """An international (non-US) melon order."""
-    def __init__(self, species, qty, country_code):
-        self.order_type = "international"
-        self.tax = 0.17
+#    def __init__(self, species, qty, country_code):
+ #       self.order_type = "international"
+  #      self.tax = 0.17
+   #     self.country_code = country_code
+    #    self.species = species
+     #   self.qty = qty
+      #  self.shipped = False
+   # def get_country_code(self):
+    #    """Return the country code."""
+
+     #   return self.country_code
+
+    def __init__(self, species, qty, country_Code):
+        super().__init__(species, qty, "international", 0.17)
         self.country_code = country_code
-      #self.species = species
-        self.qty = qty
-      #self.shipped = False
-    def get_country_code(self):
-        """Return the country code."""
-
-        return self.country_code
-
-    
     
 
         # if self.order_type = "international":
